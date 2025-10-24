@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as communityController from '../controllers/communityController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', communityController.getCommunity);
+router.get('/:id', communityController.getCommunityById);
+router.post('/', authenticate, communityController.createCommunity);
+router.put('/:id', authenticate, communityController.updateCommunity);
+router.delete('/:id', authenticate, requireAdmin, communityController.deleteCommunity);
+export default router;

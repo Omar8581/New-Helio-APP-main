@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as offersController from '../controllers/offersController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', offersController.getOffers);
+router.get('/:id', offersController.getOffersById);
+router.post('/', authenticate, offersController.createOffers);
+router.put('/:id', authenticate, offersController.updateOffers);
+router.delete('/:id', authenticate, requireAdmin, offersController.deleteOffers);
+export default router;

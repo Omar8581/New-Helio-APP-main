@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as serviceguidesController from '../controllers/serviceguidesController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', serviceguidesController.getServiceguides);
+router.get('/:id', serviceguidesController.getServiceguidesById);
+router.post('/', authenticate, serviceguidesController.createServiceguides);
+router.put('/:id', authenticate, serviceguidesController.updateServiceguides);
+router.delete('/:id', authenticate, requireAdmin, serviceguidesController.deleteServiceguides);
+export default router;

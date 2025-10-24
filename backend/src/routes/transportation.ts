@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as transportationController from '../controllers/transportationController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', transportationController.getTransportation);
+router.get('/:id', transportationController.getTransportationById);
+router.post('/', authenticate, transportationController.createTransportation);
+router.put('/:id', authenticate, transportationController.updateTransportation);
+router.delete('/:id', authenticate, requireAdmin, transportationController.deleteTransportation);
+export default router;

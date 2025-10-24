@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as jobsController from '../controllers/jobsController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', jobsController.getJobs);
+router.get('/:id', jobsController.getJobsById);
+router.post('/', authenticate, jobsController.createJobs);
+router.put('/:id', authenticate, jobsController.updateJobs);
+router.delete('/:id', authenticate, requireAdmin, jobsController.deleteJobs);
+export default router;

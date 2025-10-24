@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as lostfoundController from '../controllers/lostfoundController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', lostfoundController.getLostfound);
+router.get('/:id', lostfoundController.getLostfoundById);
+router.post('/', authenticate, lostfoundController.createLostfound);
+router.put('/:id', authenticate, lostfoundController.updateLostfound);
+router.delete('/:id', authenticate, requireAdmin, lostfoundController.deleteLostfound);
+export default router;
