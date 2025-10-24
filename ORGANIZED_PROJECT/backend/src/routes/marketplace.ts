@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as marketplaceController from '../controllers/marketplaceController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', marketplaceController.getMarketplace);
+router.get('/:id', marketplaceController.getMarketplaceById);
+router.post('/', authenticate, marketplaceController.createMarketplace);
+router.put('/:id', authenticate, marketplaceController.updateMarketplace);
+router.delete('/:id', authenticate, requireAdmin, marketplaceController.deleteMarketplace);
+export default router;

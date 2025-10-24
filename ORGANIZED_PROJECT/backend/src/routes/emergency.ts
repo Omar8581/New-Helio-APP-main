@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import * as emergencyController from '../controllers/emergencyController';
+import { authenticate, requireAdmin } from '../middleware/auth';
+const router = Router();
+router.get('/', emergencyController.getEmergency);
+router.get('/:id', emergencyController.getEmergencyById);
+router.post('/', authenticate, emergencyController.createEmergency);
+router.put('/:id', authenticate, emergencyController.updateEmergency);
+router.delete('/:id', authenticate, requireAdmin, emergencyController.deleteEmergency);
+export default router;
