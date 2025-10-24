@@ -58,7 +58,7 @@ export const ServicesProvider: React.FC<{ children: ReactNode }> = ({ children }
         if (!currentPublicUser) {
             showToast('يرجى تسجيل الدخول أولاً لإضافة الخدمات إلى المفضلة.', 'error');
             return;
-        }
+        } 
         setServices(prev => prev.map(s => s.id === serviceId ? { ...s, isFavorite: !s.isFavorite } : s));
     }, [currentPublicUser, showToast]);
 
